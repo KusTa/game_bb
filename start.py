@@ -10,6 +10,24 @@ import win32gui
 from PIL import ImageGrab
 from pykeyboard import PyKeyboard
 from pymouse import PyMouse
+import numpy as np
+
+
+# 判断是否是：黑白照片（灰度图）
+def is_gray_map(image, threshold=15):
+    if len(image.getbands()) == 1:
+        return True
+    img1 = np.asarray(image.getchannel(channel=0), dtype=np.int16)
+    img2 = np.asarray(image.getchannel(channel=1), dtype=np.int16)
+    img3 = np.asarray(image.getchannel(channel=2), dtype=np.int16)
+    diff1 = (img1 - img2).var()
+    diff2 = (img2 - img3).var()
+    diff3 = (img3 - img1).var()
+    diff_sum = (diff1 + diff2 + diff3) / 3.0
+    if diff_sum <= threshold:
+        return True
+    else:
+        return False
 
 
 class GameAuxiliaries(object):
@@ -62,6 +80,7 @@ class GameAuxiliaries(object):
         self.location_jump_point = (self.right - 112, self.bottom - 40)
         # 扫荡菜单按钮
         self.wipe_out_menu_point = (self.right - 472, self.top + 336)
+
         # 5武将，武将1
         self.hero_1_point = (self.left + 220, self.bottom - 210)
         # 5武将，武将2
@@ -75,6 +94,7 @@ class GameAuxiliaries(object):
         # 武将集合
         self.hero_point_list = [self.hero_1_point, self.hero_2_point, self.hero_3_point, self.hero_4_point,
                                 self.hero_5_point]
+
         # 扫荡按钮
         self.wipe_out_button_point = (self.right - 530, self.bottom - 148)
 
@@ -173,17 +193,25 @@ class GameAuxiliaries(object):
     def run(self):
         # 找到游戏运行窗口
         self.wipe_out("202", "1444")
-        n = 0
-        while n < 5:
-            self.hero_wipe_out(self.hero_point_list[n])
-            if self.is_enable_wipe_out():
-                print("武将%d 可以出征" % (n + 1))
-                print("点击外部区域")
-            else:
-                print("武将%d 不可以出征" % (n + 1))
-                self.mouse.click(self.outside_point[0], self.outside_point[1])
-                time.sleep(0.5)
-                n += 1
+        rect = (self.left + 1230, self.bottom - 270, self.left + 1330, self.bottom - 207)
+        print(rect)
+        image = ImageGrab.grab(rect)
+        image.show()
+        if is_gray_map(image):
+            print("武将%d 不可以出征" % 1)
+        else:
+            print("武将%d 可以出征" % 1)
+        # n = 0
+        # while n < 5:
+        #     self.hero_wipe_out(self.hero_point_list[n])
+        #     if self.is_enable_wipe_out():
+        #         print("武将%d 可以出征" % (n + 1))
+        #         print("点击外部区域")
+        #     else:
+        #         print("武将%d 不可以出征" % (n + 1))
+        #         self.mouse.click(self.outside_point[0], self.outside_point[1])
+        #         time.sleep(0.5)
+        #         n += 1
 
 
 if __name__ == '__main__':
