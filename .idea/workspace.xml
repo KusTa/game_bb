@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ad7002e-cdc3-4bbf-aa67-b70127d0e238" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/game_bb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/game_bb.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/position.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +38,15 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\PycharmProjects\game_bb\src" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Li\PycharmProjects\game_bb" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="start" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="game_bb" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -49,11 +54,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/start.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/__init__.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -64,7 +69,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.start" />
+        <item itemvalue="Python.__init__" />
       </list>
     </recent_temporary>
   </component>
@@ -103,33 +108,37 @@
     </todo-panel>
   </component>
   <component name="WindowStateProjectService">
+    <state x="414" y="161" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576198143294">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="161" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576198143294" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1576121091520">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576121091520" />
-    <state width="1894" height="269" key="GridCell.Tab.0.bottom" timestamp="1576136394504">
+    <state width="1894" height="269" key="GridCell.Tab.0.bottom" timestamp="1576214207162">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576136394504" />
-    <state width="1894" height="269" key="GridCell.Tab.0.center" timestamp="1576136394503">
+    <state width="1894" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576214207162" />
+    <state width="1894" height="269" key="GridCell.Tab.0.center" timestamp="1576214207161">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="269" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576136394503" />
-    <state width="1894" height="269" key="GridCell.Tab.0.left" timestamp="1576136394503">
+    <state width="1894" height="269" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576214207161" />
+    <state width="1894" height="269" key="GridCell.Tab.0.left" timestamp="1576214207161">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="269" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576136394503" />
-    <state width="1894" height="269" key="GridCell.Tab.0.right" timestamp="1576136394503">
+    <state width="1894" height="269" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576214207161" />
+    <state width="1894" height="269" key="GridCell.Tab.0.right" timestamp="1576214207162">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="269" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576136394503" />
+    <state width="1894" height="269" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576214207162" />
     <state x="330" y="69" key="SettingsEditor" timestamp="1576119794209">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="330" y="69" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576119794209" />
-    <state x="552" y="319" key="com.intellij.ide.util.TipDialog" timestamp="1576119234287">
+    <state x="552" y="319" key="com.intellij.ide.util.TipDialog" timestamp="1576197686964">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="319" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576119234287" />
+    <state x="552" y="319" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576197686964" />
   </component>
 </project>
