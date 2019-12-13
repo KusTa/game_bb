@@ -16,7 +16,7 @@ location_input_y_rect = (1100, 757, 1186, 797)
 # 坐标跳转
 location_jump_rect = (1200, 751, 1387, 806)
 # 扫荡菜单按钮
-wipe_out_menu_rect = (851, 333, 1048, 384)
+wipe_out_menu_rect = (851, 397, 1048, 450)
 
 # 5武将，武将1
 hero_1_rect = (121, 548, 318, 664)
@@ -33,6 +33,9 @@ hero_point_list = [hero_1_rect, hero_2_rect, hero_3_rect, hero_4_rect, hero_5_re
 
 # 扫荡按钮
 wipe_out_button_rect = (793, 647, 979, 701)
+
+# 扫荡描述位置
+wipe_out_desc_rect = (600, 555, 1172, 588)
 
 # 外部区域
 outside_rect = (1243, 31, 1405, 812)

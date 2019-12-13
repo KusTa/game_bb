@@ -9,13 +9,13 @@ import pytesseract
 import win32api
 import win32con
 import win32gui
-from PIL import ImageGrab
+from PIL import ImageGrab, Image
 from pymouse import PyMouse
 from pykeyboard import PyKeyboard
 
 import numpy as np
-import src.position as position
-import src.config as config
+import src.s2_position as position
+import src.s2_config as config
 
 
 # 判断是否是：黑白照片（灰度图）
@@ -43,14 +43,14 @@ class GameAuxiliaries(object):
         self.keyboard = PyKeyboard()
 
         # 取得窗口句柄
-        hwnd = win32gui.FindWindow(0, self.wd_name)
+        self.hwnd = win32gui.FindWindow(0, self.wd_name)
         # 设置窗口显示（防止最小化问题）
-        win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+        win32gui.ShowWindow(self.hwnd, win32con.SW_NORMAL)
         # 设置为最前显示
-        win32gui.SetForegroundWindow(hwnd)
+        win32gui.SetForegroundWindow(self.hwnd)
 
         # 调整目标窗口到坐标(0, 0), 大小设置为(1414, 824)
-        win32gui.SetWindowPos(hwnd, win32con.HWND_NOTOPMOST, 0, 0, 1414, 824,
+        win32gui.SetWindowPos(self.hwnd, win32con.HWND_NOTOPMOST, 0, 0, 1414, 824,
                               win32con.SWP_SHOWWINDOW)
         # 屏幕宽高
         self.width_real = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
@@ -58,7 +58,7 @@ class GameAuxiliaries(object):
         self.width_px = 1920
         self.height_px = 1080
         # 获取窗口尺寸信息
-        self.left, self.top, self.right, self.bottom = win32gui.GetWindowRect(hwnd)
+        self.left, self.top, self.right, self.bottom = win32gui.GetWindowRect(self.hwnd)
         # 设置窗口尺寸信息
         self.width = self.right - self.left
         self.height = self.bottom - self.top
@@ -71,10 +71,28 @@ class GameAuxiliaries(object):
         print("窗口宽：%s" % (self.right - self.left))
         print("窗口高：%s" % (self.bottom - self.top))
 
+    # 输入字符串
+    def type_string_biu_biu(self, text):
+        for number in text:
+            self.press_key_biu_biu(win32con.VK_NUMPAD0 + int(number))
+            time.sleep(0.05)
+
+    # 键盘事件
+    def press_key_biu_biu(self, key):
+        win32api.SendMessage(self.hwnd, win32con.WM_KEYDOWN, key, 0)
+
+    # 发送
+    def click_biu_biu(self, x, y):
+        long_position = win32api.MAKELONG(x - 7, y - self.title_bar_height)
+        time.sleep(0.05)
+        win32api.SendMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, long_position)
+        time.sleep(0.05)
+        win32api.SendMessage(self.hwnd, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, long_position)
+
     # 矩形区域中心点点击
     def click(self, rect):
         point = position.point(rect)
-        self.mouse.click(point[0], point[1])
+        self.click_biu_biu(point[0], point[1])
 
     # 矩形区域中心点移动
     def move(self, rect):
@@ -108,33 +126,58 @@ class GameAuxiliaries(object):
     def location_input(self, rect, value):
         point = position.point(rect)
         # 点击坐标输入框
-        self.mouse.click(point[0], point[1])
+        self.click_biu_biu(point[0], point[1])
         time.sleep(0.1)
         # 删除坐标内容
-        self.keyboard.press_key(self.keyboard.backspace_key)
+        self.press_key_biu_biu(win32con.VK_BACK)
         time.sleep(0.1)
-        self.keyboard.press_key(self.keyboard.backspace_key)
+        self.press_key_biu_biu(win32con.VK_BACK)
         time.sleep(0.1)
-        self.keyboard.press_key(self.keyboard.backspace_key)
+        self.press_key_biu_biu(win32con.VK_BACK)
         time.sleep(0.1)
-        self.keyboard.press_key(self.keyboard.backspace_key)
+        self.press_key_biu_biu(win32con.VK_BACK)
         # 输入坐标
-        self.keyboard.type_string(value)
+        self.type_string_biu_biu(value)
         time.sleep(0.3)
+
+    # 地图放大
+    def enlarge(self):
+        self.press_key_biu_biu(win32con.VK_CONTROL)
+        time.sleep(0.1)
+        self.mouse.scroll(vertical=1000)
+        time.sleep(0.5)
+        self.keyboard.release_key(self.keyboard.control_key)
+        time.sleep(1)
+
+    # 地图还原尺寸
+    def reduction(self):
+        self.press_key_biu_biu(win32con.VK_CONTROL)
+        time.sleep(0.1)
+        self.mouse.scroll(vertical=-1000)
+        time.sleep(0.5)
+        self.keyboard.release_key(self.keyboard.control_key)
+        time.sleep(1)
 
     # 扫荡
     def wipe_out(self, point):
+        # 定位到指定坐标（居中）
         self.location_jump(point)
         time.sleep(1.5)
-        self.mouse.click(self.center_x, self.center_y)
+        # 地图放大
+        self.enlarge()
+        # 点击土地
+        self.click_biu_biu(self.center_x, self.center_y)
         time.sleep(0.5)
+        # 点图还原
+        self.reduction()
+        # 点击扫荡菜单
         self.click(position.wipe_out_menu_rect)
         time.sleep(0.8)
 
     # 武将出征
     def hero_wipe_out(self, point):
         # 点击武将1
-        self.mouse.click(point[0], point[1])
+        self.click_biu_biu(point[0], point[1])
         time.sleep(0.8)
 
     # 获取屏幕点颜色
@@ -150,53 +193,84 @@ class GameAuxiliaries(object):
         b = pixel >> 16
         return [r, g, b]
 
+    # 图片二值化
+    def image_two_value(self, image):
+        threshold = 85
+        table = []
+        for i in range(256):
+            if i < threshold:
+                table.append(1)
+            else:
+                table.append(0)
+        return image.point(table, '1')
+
     # 获取指定区域内的文字内容
     def get_text_by_orc(self, rect):
         image = ImageGrab.grab(rect)
         image = image.convert('L')
-        return pytesseract.image_to_string(image, lang='chi_sim')
+        image = self.image_two_value(image)
+        return pytesseract.image_to_string(image, lang='chi_sim', config='--psm 7')
 
     def is_enable_wipe_out(self):
-        text = self.get_text_by_orc(position.wipe_out_button_rect)
-        return text.find("扫") > 0
+        text = self.get_text_by_orc(position.wipe_out_desc_rect)
+        print(text)
+        return text.find("强盛") < 0
 
     # 启动
     def wipe_out_test(self):
         # 武将索引
+        location_index = 0
         hero_index = 0
         wipe = True
         while True:
             if wipe:
-                self.wipe_out(config.wipe_out_location_5_1)
+                self.wipe_out(config.wipe_out_location_list[location_index % len(config.wipe_out_location_list)])
                 wipe = False
-            image = ImageGrab.grab(position.top_right(position.hero_point_list[hero_index % 5]))
+            image = ImageGrab.grab(position.top_right(position.hero_point_list[hero_index % len(
+                position.hero_point_list)]))
             if is_gray_map(image):
                 print("武将不可以出征")
-                if hero_index == 4:
+                if hero_index % len(position.hero_point_list) == len(position.hero_point_list) - 1:
+                    print("最后一个都不能执行任务，重新开始")
                     self.click(position.outside_rect)
+                    location_index += 1
+                    wipe = True
                 time.sleep(0.5)
             else:
                 print("武将可以出征")
                 time.sleep(0.5)
-                self.click(position.hero_point_list[hero_index % 5])
+                self.click(position.hero_point_list[hero_index % len(position.hero_point_list)])
                 time.sleep(0.5)
-                self.click(position.wipe_out_button_rect)
-                wipe = True
+                if self.is_enable_wipe_out():
+                    print("武将开始出征了!!!")
+                    self.click(position.wipe_out_button_rect)
+                    location_index += 1
+                    wipe = True
+                else:
+                    print("但是武将没能力出征")
+                    self.click(position.outside_rect)
+                    time.sleep(0.5)
+                    # 最后一个武将还不能出征就重新选个地
+                    if hero_index % len(position.hero_point_list) == len(position.hero_point_list) - 1:
+                        print("最后一个都不能执行任务，重新开始")
+                        self.click(position.outside_rect)
+                        location_index += 1
+                        wipe = True
             time.sleep(5)
             hero_index += 1
 
-    def stop(self):
-        self.flag = False
+    # 测试文字识别
+    def test(self):
+        text = self.get_text_by_orc(position.wipe_out_desc_rect)
+        print(text)
 
     # 创建GUI
     def run(self):
         window = tk.Tk()
         window.title("率土之滨辅助")
-        window.geometry("500x300")
-        start = tk.Button(window, text="开始", command=lambda: self.wipe_out_test())
-        start.pack(side=tk.LEFT)
-        end = tk.Button(window, text="结束", command=lambda: self.stop())
-        end.pack(side=tk.RIGHT)
+        window.geometry("500x300+1414+100")
+        start = tk.Button(window, text="开始", command=lambda: self.press_key_biu_biu(win32con.VK_NUMPAD0))
+        start.pack()
         window.mainloop()
 
 

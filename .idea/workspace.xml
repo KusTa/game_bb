@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ad7002e-cdc3-4bbf-aa67-b70127d0e238" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/position.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/s2_config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/s3_config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/s3_position.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/position.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/s2_position.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +35,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -42,6 +43,7 @@
       <recent name="C:\Users\HP\PycharmProjects\game_bb\src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\PycharmProjects\game_bb\src" />
       <recent name="C:\Users\Li\PycharmProjects\game_bb" />
     </key>
   </component>
@@ -116,22 +118,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576121091520" />
-    <state width="1894" height="269" key="GridCell.Tab.0.bottom" timestamp="1576214207162">
+    <state width="1894" height="203" key="GridCell.Tab.0.bottom" timestamp="1576231297949">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576214207162" />
-    <state width="1894" height="269" key="GridCell.Tab.0.center" timestamp="1576214207161">
+    <state width="1894" height="203" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576231297949" />
+    <state width="1894" height="203" key="GridCell.Tab.0.center" timestamp="1576231297948">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="269" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576214207161" />
-    <state width="1894" height="269" key="GridCell.Tab.0.left" timestamp="1576214207161">
+    <state width="1894" height="203" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576231297948" />
+    <state width="1894" height="203" key="GridCell.Tab.0.left" timestamp="1576231297948">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="269" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576214207161" />
-    <state width="1894" height="269" key="GridCell.Tab.0.right" timestamp="1576214207162">
+    <state width="1894" height="203" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576231297948" />
+    <state width="1894" height="203" key="GridCell.Tab.0.right" timestamp="1576231297949">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="269" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576214207162" />
+    <state width="1894" height="203" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576231297949" />
     <state x="330" y="69" key="SettingsEditor" timestamp="1576119794209">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -140,5 +142,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="319" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576197686964" />
+    <state x="0" y="0" width="1009" height="1040" key="find.popup" timestamp="1576228547784">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" width="1009" height="1040" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576228547784" />
   </component>
 </project>
