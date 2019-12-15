@@ -15,8 +15,8 @@ from PyQt5.QtWidgets import QApplication
 from pykeyboard import PyKeyboard
 from pymouse import PyMouse
 
-import src.s3_config as config
-import src.s3_position as position
+import src.s2_config as config
+import src.s2_position as position
 
 
 # 判断是否是：灰度图
@@ -82,6 +82,11 @@ class GameAuxiliaries(object):
         print("窗口宽：%s" % (self.right - self.left))
         print("窗口高：%s" % (self.bottom - self.top))
 
+        # 部队兵力列表
+        self.army_troops_list = [0, 0, 0, 0, 0]
+        # 土地的扫荡索引
+        self.manor_index_list = [0, 0]
+
     # 截图（并不会算上外部区域）
     def image_grab(self, rect):
         # 截图工具
@@ -120,6 +125,24 @@ class GameAuxiliaries(object):
     def click(self, rect):
         point = position.point(rect)
         self.click_biu_biu(point[0], point[1])
+
+    # 矩形左中点击
+    def click_left(self, rect):
+        self.click_biu_biu(rect[0] + 5, int((rect[1] + rect[3]) / 2))
+        sleep(0.1)
+        self.click_biu_biu(rect[0], int((rect[1] + rect[3]) / 2))
+        sleep(0.1)
+
+    # 矩形右中点击
+    def click_right(self, rect):
+        self.click_biu_biu(rect[2] - 5, int((rect[1] + rect[3]) / 2))
+        sleep(0.1)
+        self.click_biu_biu(rect[2], int((rect[1] + rect[3]) / 2))
+        sleep(0.1)
+
+    # 矩形百分比点击
+    def click_percent(self, rect, percent):
+        self.click_biu_biu(int(rect[0] + (rect[2] - rect[0]) * percent), int((rect[1] + rect[3]) / 2))
 
     # 矩形区域中心点移动
     def move(self, rect):
@@ -227,8 +250,7 @@ class GameAuxiliaries(object):
         return [r, g, b]
 
     # 图片二值化
-    def image_two_value(self, image):
-        threshold = 85
+    def image_two_value(self, image, threshold=85):
         table = []
         for i in range(256):
             if i < threshold:
@@ -242,20 +264,45 @@ class GameAuxiliaries(object):
         image = self.image_grab(rect)
         image = image.convert('L')
         image = self.image_two_value(image)
-        image.show()
         return pytesseract.image_to_string(image, lang='chi_sim', config='--psm 7')
 
     # 获取指定区域内的数字内容
-    def get_number_by_orc(self, rect):
+    def get_number_by_orc(self, rect, threshold=200):
         image = self.image_grab(rect)
         image = image.convert('L')
-        image = self.image_two_value(image)
+        image = self.image_two_value(image, threshold=threshold)
         number = pytesseract.image_to_string(image, lang='eng',
                                              config='--psm 7 --oem 3 -c tessedit_char_whitelist=0123456789')
         if number.isdigit():
             return int(number)
         else:
             return 0
+
+    # 获取指定区域内的数字内容
+    def get_number_pair_by_orc(self, rect, threshold=200):
+        image = self.image_grab(rect)
+        image = image.convert('L')
+        image = self.image_two_value(image, threshold=threshold)
+        number = pytesseract.image_to_string(image, lang='eng',
+                                             config='--psm 7 --oem 3 -c tessedit_char_whitelist=0123456789/')
+        if number.find("/") < 0:
+            return [0, 0]
+        else:
+            pair = number.split("/")
+            if pair[0].isdigit() and pair[1].isdigit():
+                return [int(pair[0]), int(pair[1])]
+            else:
+                return [0, 0]
+
+    # 获取指定区域内的数字内容
+    def get_time_by_orc(self, rect, threshold=200):
+        image = self.image_grab(rect)
+        image = image.convert('L')
+        image = self.image_two_value(image, threshold=threshold)
+        time_str = pytesseract.image_to_string(image, lang='eng',
+                                               config='--psm 7 --oem 3 -c tessedit_char_whitelist=0123456789:')
+        print(time_str)
+        return time_str
 
     # 是否可以出征（通过系统提示语）
     def is_enable_wipe_out_by_system(self):
@@ -264,44 +311,131 @@ class GameAuxiliaries(object):
         return text.find("强盛") < 0
 
     # 是否可以出征
-    def is_enable_wipe_out(self, hero, manor, troops):
-        threshold = config.wipe_out_threshold_dict[hero][manor]
+    def is_enable_wipe_out(self, hero_index, manor_index, troops):
+        threshold = config.wipe_out_threshold_dict[hero_index][manor_index]
         print("推荐兵力：{threshold}，当前兵力：{troops}".format(threshold=str(threshold), troops=str(troops)))
         return threshold <= troops
 
-    # 扫荡测试
-    def wipe_out_test(self):
-        # 武将索引
-        hero_index = 0
-        # 扫荡地点索引
-        location_index = 0
-        # 是否需要重新定位
-        reset_location = True
-        while True:
-            # 需要重新定位
-            if reset_location:
-                manor_list = config.wipe_out_location_dict["manor_6"]
-                location = manor_list[hero_index % len(manor_list)]
-                print("定位扫荡地点：%s" % str(location))
-                self.wipe_out(location)
-                reset_location = False
+    # 时间转换
+    def time_str_2_seconds(self, time_str):
+        time_split = time_str.split(":")
+        if len(time_split) != 3:
+            return 0
+        else:
+            return int(time_split[0]) * 60 * 60 + int(time_split[1]) * 60 + int(time_split[2])
 
-            # 截图武将队伍图片
-            print("截图武将队伍：%d" % ((hero_index + 1) % len(position.hero_point_list)))
-            image = self.image_grab(position.top_right(position.hero_point_list[hero_index % len(
-                position.hero_point_list)]))
+    # 寻找合适的征兵时间
+    def fit_conscription(self, physical):
+        # 最大时长
+        max_duration = 0
+        max_index = -1
+        for rect in position.hero_conscription_duration_rect_list:
+            max_index += 1
+            duration = self.time_str_2_seconds(self.get_time_by_orc(rect, threshold=130))
+            print("武将 " + str(max_index + 1) + "征兵时长：" + str(duration))
+            if duration > max_duration:
+                max_duration = duration
+        print("最大征兵时长：%d" % max_duration)
+        # 可用时长，即体力满之前的时长
+        enable_duration = (130 - physical) * 60 * 60 / 20
+        print("可用征兵时长：%d" % enable_duration)
+        # 总时长
+        if max_duration > enable_duration:
+            percent = enable_duration / max_duration
+            print("征兵时间大于剩余体力恢复：占比：%s" % str(percent))
+            self.click_percent(position.hero_conscription_rect_list[max_index], percent)
+        else:
+            print("征兵时间小于剩余体力恢复")
 
-            # 判断武将灰度和兵力多少
-            if is_gray_map(image) or not self.is_enable_wipe_out("hero_%d" % hero_index, "manor_6",
+    # 单个武将征兵
+    def hero_conscription(self, hero_index):
+        print("判断武将是否是灰色状态：")
+        if is_gray_map(self.image_grab(position.top_right(position.city_hero_point_list[hero_index]))):
+            print("武将灰色状态不能征兵")
+            return
+        print("点击第一个武将队伍")
+        self.click(position.city_hero_point_list[hero_index])
+        sleep(1)
+        self.army_troops_list[hero_index] = self.get_number_by_orc(position.army_hero_troops_rect)
+        print("获取武将兵力数量：%d" % self.army_troops_list[hero_index])
+        print("点击武将一")
+        self.click(position.army_hero_1_rect)
+        sleep(1)
+        physical = self.get_number_pair_by_orc(position.hero_physical_value_rect, threshold=80)
+        print("获取武将体力值：%d" % physical[0])
+        print("关闭武将属性页面")
+        self.click(position.page_close_rect)
+        sleep(0.5)
+        print("判断兵力是否够最低的，不够就征兵：")
+        # TODO 判断兵力是否够最低的，不够就征兵：
+        print("判断体力是否不太满：")
+        if physical[0] < 130 - 20:
+            print("体力不太满：")
+            print("点击征兵按钮")
+            self.click(position.conscription_button_rect)
+            print("征兵数量拖动到最大")
+            for rect in position.hero_conscription_rect_list:
+                self.click_right(rect)
+            print("寻找合适的征兵数量")
+            self.fit_conscription(physical[0])
+            sleep(1)
+            print("确认征兵")
+            self.click(position.conscription_confirm_button_rect)
+            sleep(1)
+            print("弹框确认征兵")
+            self.click(position.conscription_dialog_confirm_button_rect)
+            sleep(1)
+            print("回到上一页")
+            self.click(position.page_return_rect)
+        else:
+            print("体力有点满：")
+            print("回到上一页")
+            self.click(position.page_return_rect)
+        sleep(2)
+
+    # 征兵操作
+    def conscription(self):
+        print("定位主城位置")
+        self.location_main_city()
+        print("点击主城菜单")
+        self.click(position.city_menu_rect)
+        sleep(2)
+
+        # 遍历武将征兵
+        for index in range(0, 5):
+            self.hero_conscription(index)
+
+        print("返回上一页")
+        self.click(position.page_return_rect)
+        sleep(2)
+
+    # 武将扫荡分析
+    def hero_wipe_out_analysis(self, hero_index, troops):
+        manor_dict = config.wipe_out_threshold_dict[hero_index]
+        enable_index = -1
+        for index in range(0, 2):
+            if manor_dict[index] <= troops:
+                print(manor_dict[index])
+                print(troops)
+                enable_index = index
+                break
+        if enable_index >= 0:
+            print("有能战胜的土地：%d 级地" % (6 - enable_index))
+            print("寻找合适的土地：")
+            rect = config.wipe_out_location_dict["manor_%d" % (6 - enable_index)][self.manor_index_list[enable_index]]
+            print("合适的土地坐标：" + str(rect))
+            print("定位扫荡地点")
+            self.wipe_out(rect)
+            print("判断武将灰度状态")
+            image = self.image_grab(position.top_right(position.hero_point_list[hero_index]))
+            if is_gray_map(image) or not self.is_enable_wipe_out(hero_index, enable_index,
                                                                  self.get_number_by_orc(position.hero_troops(
                                                                      position.hero_point_list[hero_index % len(
                                                                          position.hero_point_list)]))):
-                print("不可以出征状态")
-                if hero_index % len(position.hero_point_list) == len(position.hero_point_list) - 1:
-                    print("最后一个都不能执行任务，重新开始")
-                    self.click(position.outside_rect)
-                    location_index += 1
-                    reset_location = True
+                print("武将是灰色状态，无法出征")
+                print("点击外部区域回到上一页")
+                sleep(0.5)
+                self.click(position.outside_rect)
             else:
                 print("武将可以出征")
                 sleep(0.5)
@@ -309,25 +443,41 @@ class GameAuxiliaries(object):
                 sleep(0.5)
                 print("武将开始出征了")
                 self.click(position.wipe_out_button_rect)
-                location_index += 1
-                reset_location = True
-            sleep(6)
-            hero_index += 1
+                print(enable_index)
+                print(self.manor_index_list[enable_index])
+                print(len(manor_dict))
+                self.manor_index_list[enable_index] = (self.manor_index_list[enable_index] + 1) % len(manor_dict)
+                print(self.manor_index_list[enable_index])
+                sleep(2)
+
+        else:
+            print("没有能战胜的土地")
+
+    # 扫荡测试
+    def hero_wipe_out_test(self):
+
+        while True:
+            # 征兵
+            self.conscription()
+
+            print(self.army_troops_list)
+
+            for index in range(0, 5):
+                self.hero_wipe_out_analysis(index, self.army_troops_list[index])
+            sleep(7 * 60)
 
     # 测试文字识别
     def test(self):
-        print(self.get_number_by_orc(position.hero_troops(position.hero_1_rect)))
-        print(self.get_number_by_orc(position.hero_troops(position.hero_2_rect)))
-        print(self.get_number_by_orc(position.hero_troops(position.hero_3_rect)))
-        print(self.get_number_by_orc(position.hero_troops(position.hero_4_rect)))
-        print(self.get_number_by_orc(position.hero_troops(position.hero_5_rect)))
+        for rect in position.city_hero_point_list:
+            time_str = self.get_time_by_orc(position.hero_troops(rect))
+            self.time_str_2_seconds(time_str)
 
     # 创建GUI
     def run(self):
         window = tk.Tk()
         window.title("率土之滨辅助")
         window.geometry("500x300+1414+100")
-        start = tk.Button(window, text="开始", command=lambda: self.wipe_out_test())
+        start = tk.Button(window, text="开始", command=lambda: self.hero_wipe_out_test())
         start.pack()
         window.mainloop()
 
