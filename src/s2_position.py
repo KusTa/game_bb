@@ -49,3 +49,8 @@ def point(rect):
 # 矩形的1/4右上
 def top_right(rect):
     return int((rect[0] + rect[2]) / 2), rect[1], rect[2], int((rect[1] + rect[3]) / 2)
+
+
+# 武将兵力数字位置
+def hero_troops(rect):
+    return int((rect[0] + rect[2]) / 2 + 18), rect[3], rect[2], rect[3] + 35
