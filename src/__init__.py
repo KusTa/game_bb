@@ -260,10 +260,10 @@ class GameAuxiliaries(object):
         return image.point(table, '1')
 
     # 获取指定区域内的文字内容
-    def get_text_by_orc(self, rect):
+    def get_text_by_orc(self, rect, threshold=85):
         image = self.image_grab(rect)
         image = image.convert('L')
-        image = self.image_two_value(image)
+        image = self.image_two_value(image, threshold=threshold)
         return pytesseract.image_to_string(image, lang='chi_sim', config='--psm 7')
 
     # 获取指定区域内的数字内容
@@ -353,6 +353,10 @@ class GameAuxiliaries(object):
         if is_gray_map(self.image_grab(position.top_right(position.city_hero_point_list[hero_index]))):
             print("武将灰色状态不能征兵")
             return
+        if self.get_text_by_orc(position.hero_status(position.city_hero_point_list[hero_index]), threshold=180).find(
+                "征") >= 0:
+            print("武将正在征兵")
+            return
         print("点击第一个武将队伍")
         self.click(position.city_hero_point_list[hero_index])
         sleep(1)
@@ -369,7 +373,8 @@ class GameAuxiliaries(object):
         print("判断兵力是否够最低的，不够就征兵：")
         # TODO 判断兵力是否够最低的，不够就征兵：
         print("判断体力是否不太满：")
-        if physical[0] < 130 - 20:
+        # TODO 征兵逻辑待完善
+        if physical[0] < 130 - 130:
             print("体力不太满：")
             print("点击征兵按钮")
             self.click(position.conscription_button_rect)
@@ -468,9 +473,7 @@ class GameAuxiliaries(object):
 
     # 测试文字识别
     def test(self):
-        for rect in position.city_hero_point_list:
-            time_str = self.get_time_by_orc(position.hero_troops(rect))
-            self.time_str_2_seconds(time_str)
+        print(self.get_text_by_orc(position.hero_status(position.city_hero_point_list[0]), threshold=180))
 
     # 创建GUI
     def run(self):
