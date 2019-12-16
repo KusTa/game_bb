@@ -352,10 +352,12 @@ class GameAuxiliaries(object):
         print("判断武将是否是灰色状态：")
         if is_gray_map(self.image_grab(position.top_right(position.city_hero_point_list[hero_index]))):
             print("武将灰色状态不能征兵")
+            sleep(2)
             return
         if self.get_text_by_orc(position.hero_status(position.city_hero_point_list[hero_index]), threshold=180).find(
                 "征") >= 0:
             print("武将正在征兵")
+            sleep(2)
             return
         print("点击第一个武将队伍")
         self.click(position.city_hero_point_list[hero_index])
@@ -374,10 +376,20 @@ class GameAuxiliaries(object):
         # TODO 判断兵力是否够最低的，不够就征兵：
         print("判断体力是否不太满：")
         # TODO 征兵逻辑待完善
-        if physical[0] < 130 - 130:
+        if physical[0] < 130 - 20:
             print("体力不太满：")
             print("点击征兵按钮")
             self.click(position.conscription_button_rect)
+            sleep(0.5)
+            print("判断是否是在征兵状态")
+            for rect in position.conscription_status_rect_list:
+                if self.get_text_by_orc(rect, threshold=160).find("征兵中") >= 0:
+                    print("征兵中，返回上一页面")
+                    self.click(position.outside_rect)
+                    sleep(1)
+                    self.click(position.page_return_rect)
+                    sleep(2)
+                    return
             print("征兵数量拖动到最大")
             for rect in position.hero_conscription_rect_list:
                 self.click_right(rect)
@@ -473,7 +485,7 @@ class GameAuxiliaries(object):
 
     # 测试文字识别
     def test(self):
-        print(self.get_text_by_orc(position.hero_status(position.city_hero_point_list[0]), threshold=180))
+        print(self.get_text_by_orc(position.conscription_status_rect_list[2], threshold=160))
 
     # 创建GUI
     def run(self):
