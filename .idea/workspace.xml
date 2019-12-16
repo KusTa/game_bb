@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="a9b2210d-2add-48d6-87c0-b1a961fd163e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/s2_position.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/s2_position.py" afterDir="false" />
+=======
+    <list default="true" id="9ad7002e-cdc3-4bbf-aa67-b70127d0e238" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/game_bb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/game_bb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/s3_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/s3_config.py" afterDir="false" />
+>>>>>>> 5897ac91232374471a92be11408a8b22611c17c2
       <change beforePath="$PROJECT_DIR$/src/s3_position.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/s3_position.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
@@ -65,6 +75,8 @@
       </file>
     </leaf>
   </component>
+=======
+>>>>>>> 5897ac91232374471a92be11408a8b22611c17c2
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -72,6 +84,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="FindInProjectRecents">
     <findStrings>
       <find>input</find>
@@ -154,29 +167,27 @@
       </pane>
       <pane id="Scope" />
     </panes>
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+>>>>>>> 5897ac91232374471a92be11408a8b22611c17c2
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Li\PycharmProjects\game_bb" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.__init__">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -228,6 +239,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -250,6 +273,7 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+<<<<<<< HEAD
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
@@ -274,26 +298,15 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+=======
+>>>>>>> 5897ac91232374471a92be11408a8b22611c17c2
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -314,6 +327,7 @@
       </map>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
@@ -432,5 +446,48 @@
         </state>
       </provider>
     </entry>
+=======
+  <component name="WindowStateProjectService">
+    <state width="1894" height="268" key="GridCell.Tab.0.bottom" timestamp="1576485120954">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="268" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576485120954" />
+    <state width="1894" height="268" key="GridCell.Tab.0.center" timestamp="1576485120954">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="268" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576485120954" />
+    <state width="1894" height="268" key="GridCell.Tab.0.left" timestamp="1576485120953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="268" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576485120953" />
+    <state width="1894" height="268" key="GridCell.Tab.0.right" timestamp="1576485120954">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="268" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576485120954" />
+    <state width="1894" height="335" key="GridCell.Tab.1.bottom" timestamp="1576465201394">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="335" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576465201394" />
+    <state width="1894" height="335" key="GridCell.Tab.1.center" timestamp="1576465201394">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="335" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576465201394" />
+    <state width="1894" height="335" key="GridCell.Tab.1.left" timestamp="1576465201394">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="335" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576465201394" />
+    <state width="1894" height="335" key="GridCell.Tab.1.right" timestamp="1576465201394">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1894" height="335" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576465201394" />
+    <state x="330" y="69" key="SettingsEditor" timestamp="1576461104355">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="330" y="69" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576461104355" />
+    <state x="455" y="137" width="1009" height="766" key="find.popup" timestamp="1576483516484">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="455" y="137" width="1009" height="766" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576483516484" />
+>>>>>>> 5897ac91232374471a92be11408a8b22611c17c2
   </component>
 </project>

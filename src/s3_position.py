@@ -95,3 +95,8 @@ def top_right(rect):
 # 武将兵力数字位置
 def hero_troops(rect):
     return int((rect[0] + rect[2]) / 2 + 18), rect[3], rect[2], rect[3] + 35
+
+
+# 武将状态文字位置
+def hero_status(rect):
+    return rect[0], rect[3], rect[0] + 81, rect[3] + 35

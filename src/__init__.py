@@ -15,8 +15,8 @@ from PyQt5.QtWidgets import QApplication
 from pykeyboard import PyKeyboard
 from pymouse import PyMouse
 
-import src.s2_config as config
-import src.s2_position as position
+import src.s3_config as config
+import src.s3_position as position
 
 
 # 判断是否是：灰度图
@@ -439,7 +439,10 @@ class GameAuxiliaries(object):
         if enable_index >= 0:
             print("有能战胜的土地：%d 级地" % (6 - enable_index))
             print("寻找合适的土地：")
-            rect = config.wipe_out_location_dict["manor_%d" % (6 - enable_index)][self.manor_index_list[enable_index]]
+            manor_list = config.wipe_out_location_dict["manor_%d" % (6 - enable_index)]
+            manor_index = self.manor_index_list[enable_index]
+            print(manor_index)
+            rect = manor_list[manor_index]
             print("合适的土地坐标：" + str(rect))
             print("定位扫荡地点")
             self.wipe_out(rect)
