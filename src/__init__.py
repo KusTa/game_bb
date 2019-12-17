@@ -156,6 +156,14 @@ class GameAuxiliaries(object):
             for index in range(0, 3):
                 event.click_hero_conscription_max(self.hwnd, index)
 
+            print("判断是否征兵队列已满")
+            if assistant.is_conscription_tip(self.hwnd):
+                print("征兵队列已满, 点击外部返回")
+                event.click_outside(self.hwnd)
+                print("再次点击返回")
+                event.click_page_return(self.hwnd)
+                return
+
             print("寻找合适的征兵数量")
             self.fit_conscription(physical)
 

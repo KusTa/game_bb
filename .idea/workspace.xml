@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ad7002e-cdc3-4bbf-aa67-b70127d0e238" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assistant.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/event.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/image.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/keyboard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mouse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/position_util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/string_util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/time.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user_input.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assistant.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/assistant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/event.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/s2_position.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/s2_position.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/s3_position.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/s3_position.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,22 +167,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="297" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1576566954816" />
-    <state width="1894" height="270" key="GridCell.Tab.0.bottom" timestamp="1576579848622">
+    <state width="1894" height="270" key="GridCell.Tab.0.bottom" timestamp="1576581389863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="270" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576579848622" />
-    <state width="1894" height="270" key="GridCell.Tab.0.center" timestamp="1576579848622">
+    <state width="1894" height="270" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576581389863" />
+    <state width="1894" height="270" key="GridCell.Tab.0.center" timestamp="1576581389863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="270" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576579848622" />
-    <state width="1894" height="270" key="GridCell.Tab.0.left" timestamp="1576579848621">
+    <state width="1894" height="270" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576581389863" />
+    <state width="1894" height="270" key="GridCell.Tab.0.left" timestamp="1576581389863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="270" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576579848621" />
-    <state width="1894" height="270" key="GridCell.Tab.0.right" timestamp="1576579848622">
+    <state width="1894" height="270" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576581389863" />
+    <state width="1894" height="270" key="GridCell.Tab.0.right" timestamp="1576581389863">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1894" height="270" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576579848622" />
+    <state width="1894" height="270" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576581389863" />
     <state width="1894" height="335" key="GridCell.Tab.1.bottom" timestamp="1576465201394">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -214,9 +207,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="294" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576561699417" />
-    <state x="455" y="137" width="1009" height="766" key="find.popup" timestamp="1576483516484">
+    <state x="455" y="137" width="1009" height="766" key="find.popup" timestamp="1576581346489">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="455" y="137" width="1009" height="766" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576483516484" />
+    <state x="455" y="137" width="1009" height="766" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576581346489" />
   </component>
 </project>

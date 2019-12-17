@@ -44,7 +44,7 @@ def get_hero_conscription_duration(hwnd, hero_index):
 
 # 武将是否兵力足够
 def is_troops_enough(hwnd, hero_index):
-    return image.get_number_by_orc(hwnd, position.hero_troops(position.expedition_army_rect_list[
+    return image.get_number_by_orc(hwnd, position_util.hero_troops(position.expedition_army_rect_list[
                                                                   hero_index % len(
                                                                       position.expedition_army_rect_list)]), 85)
 
@@ -52,3 +52,9 @@ def is_troops_enough(hwnd, hero_index):
 # 征兵不可用
 def is_conscription_disable(hwnd):
     return image.is_above_main_threshold(image.image_grab(hwnd, position.conscription_button_rect), 60)
+
+
+# 征兵队列已满
+def is_conscription_tip(hwnd):
+    return image.get_text_by_orc(hwnd, position.conscription_tip_rect, 120).find(
+        "预备兵") >= 0

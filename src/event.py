@@ -113,12 +113,6 @@ def click_conscription_dialog_confirm_button(hwnd):
     time.sleep(1)
 
 
-# 点击确认征兵按钮
-def location_jump(hwnd, rect):
-    mouse.click(hwnd, position.conscription_dialog_confirm_button_rect)
-    time.sleep(1)
-
-
 # 点击坐标输入框并输入（单个）
 def text_input(hwnd, rect, value):
     mouse.click(hwnd, rect)
