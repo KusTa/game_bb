@@ -11,7 +11,7 @@ from pymouse import PyMouse
 
 import src.assistant as assistant
 import src.event as event
-import src.s2_config as config
+import src.s3_config as config
 
 
 class GameAuxiliaries(object):
@@ -244,7 +244,7 @@ class GameAuxiliaries(object):
 
             for index in range(0, 5):
                 self.hero_wipe_out_analysis(index, self.army_troops_list[index])
-            time.sleep(20)
+            time.sleep(7 * 60)
 
     def test(self):
         assistant.is_conscription_disable(self.hwnd)

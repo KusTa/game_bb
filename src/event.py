@@ -2,7 +2,7 @@
 
 import src.keyboard as keyboard
 import src.mouse as mouse
-import src.s2_position as position
+import src.s3_position as position
 import src.time as time
 import src.user_input as user_input
 import src.window as window
@@ -116,7 +116,7 @@ def click_conscription_dialog_confirm_button(hwnd):
 # 点击坐标输入框并输入（单个）
 def text_input(hwnd, rect, value):
     mouse.click(hwnd, rect)
-    time.sleep(0.1)
+    time.sleep(0.3)
     # 删除坐标内容
     time.sleep(0.1)
     keyboard.press_key(hwnd, keyboard.backspace)
@@ -125,9 +125,11 @@ def text_input(hwnd, rect, value):
     time.sleep(0.1)
     keyboard.press_key(hwnd, keyboard.backspace)
     time.sleep(0.1)
+    keyboard.press_key(hwnd, keyboard.backspace)
+    time.sleep(0.2)
     # 输入坐标
     keyboard.type_string(hwnd, value)
-    time.sleep(0.3)
+    time.sleep(0.5)
 
 
 # 坐标输入
