@@ -86,3 +86,9 @@ conscription_tip_rect = (492, 402, 928, 446)
 
 # 中心点矩形
 center_land_rect = (663, 378, 754, 469)
+
+# 中心土地的等级
+center_land_level_rect = (596, 276, 670, 306)
+
+# 土地信息
+center_land_info_rect = (348, 334, 555, 512)

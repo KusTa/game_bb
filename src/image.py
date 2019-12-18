@@ -2,6 +2,7 @@
 
 import sys
 
+import cv2
 import numpy as np
 import pytesseract
 from PIL import ImageQt, Image
@@ -77,6 +78,7 @@ def image_grab_clear(hwnd, rect, threshold):
 def get_text_by_orc(hwnd, rect, threshold):
     # 截图
     image = image_grab_clear(hwnd, rect, threshold=threshold)
+    image.show()
     # 图片识别
     return pytesseract.image_to_string(image, lang='chi_sim', config='--psm 7')
 
@@ -115,3 +117,34 @@ def is_image_similar(hwnd, image_l, rect):
 # 打开图片
 def open_image(path):
     return Image.open(path)
+
+
+# 获取明确的内容
+def get_clear_text_by_orc(hwnd, rect, threshold, lang, whitelist):
+    # 截图
+    image = image_grab_clear(hwnd, rect, threshold=threshold)
+    image.show()
+    # 图片识别
+    return pytesseract.image_to_string(image, lang=lang,
+                                       config='--psm 1 --oem 3 -c tessedit_char_whitelist=' + whitelist)
+
+
+# 水平投影
+def get_h_projection(image):
+    cv2.cvtColor(numpy.asarray(image_l), cv2.COLOR_BGR2GRAY)
+    h_projection = np.zeros(image.shape, np.uint8)
+    # 图像高与宽
+    (h, w) = image.shape
+    # 长度与图像高度一致的数组
+    h_ = [0] * h
+    # 循环统计每一行白色像素的个数
+    for y in range(h):
+        for x in range(w):
+            if image[y, x] == 255:
+                h_[y] += 1
+    # 绘制水平投影图像
+    for y in range(h):
+        for x in range(h_[y]):
+            h_projection[y, x] = 255
+    cv2.imshow('hProjection2', h_projection)
+    return h_

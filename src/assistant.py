@@ -63,3 +63,8 @@ def is_conscription_tip(hwnd):
 # 是否是五级地
 def is_land_5_tone(hwnd):
     return image.is_image_similar(hwnd, image.open_image('../res/land_5_tone.png'), position.center_land_rect)
+
+
+def get_land_info(hwnd):
+    image.get_h_projection(image.image_grab(hwnd, position.center_land_info_rect))
+    # print(image.get_clear_text_by_orc(hwnd, position.center_land_info_rect, 120, 'eng', '123456789Lv.'))

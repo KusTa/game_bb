@@ -248,14 +248,14 @@ class GameAuxiliaries(object):
 
     # 测试
     def test(self):
-        self.location_jump((376, 632))
+        assistant.get_land_info(self.hwnd)
 
     # 创建GUI
     def run(self):
         window = tk.Tk()
         window.title("率土之滨辅助")
         window.geometry("500x300+1414+100")
-        start = tk.Button(window, text="开始", command=lambda: self.hero_wipe_out_test())
+        start = tk.Button(window, text="开始", command=lambda: self.test())
         start.pack()
         window.mainloop()
 
