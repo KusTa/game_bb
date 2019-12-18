@@ -2,7 +2,7 @@
 
 import src.image as image
 import src.position_util as position_util
-import src.s3_position as position
+import src.s2_position as position
 import src.string_util as string_util
 
 
@@ -45,8 +45,8 @@ def get_hero_conscription_duration(hwnd, hero_index):
 # 武将是否兵力足够
 def is_troops_enough(hwnd, hero_index):
     return image.get_number_by_orc(hwnd, position_util.hero_troops(position.expedition_army_rect_list[
-                                                                  hero_index % len(
-                                                                      position.expedition_army_rect_list)]), 85)
+                                                                       hero_index % len(
+                                                                           position.expedition_army_rect_list)]), 85)
 
 
 # 征兵不可用
@@ -58,3 +58,8 @@ def is_conscription_disable(hwnd):
 def is_conscription_tip(hwnd):
     return image.get_text_by_orc(hwnd, position.conscription_tip_rect, 120).find(
         "预备兵") >= 0
+
+
+# 是否是五级地
+def is_land_5_tone(hwnd):
+    return image.is_image_similar(hwnd, image.open_image('../res/land_5_tone.png'), position.center_land_rect)

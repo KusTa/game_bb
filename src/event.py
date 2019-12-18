@@ -2,7 +2,7 @@
 
 import src.keyboard as keyboard
 import src.mouse as mouse
-import src.s3_position as position
+import src.s2_position as position
 import src.time as time
 import src.user_input as user_input
 import src.window as window

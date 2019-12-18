@@ -4,10 +4,11 @@ import sys
 
 import numpy as np
 import pytesseract
-from PIL import ImageQt
+from PIL import ImageQt, Image
 from PyQt5.QtWidgets import QApplication
 
 import src.window as window
+import src.image_similar as image_similar
 
 
 # 判断图片是否是灰度图
@@ -102,3 +103,15 @@ def get_number_tuple_by_orc(hwnd, rect, threshold, split):
     number_tuple = pytesseract.image_to_string(image, lang='eng',
                                                config='--psm 7 --oem 3 -c tessedit_char_whitelist=0123456789' + split)
     return number_tuple
+
+
+# 图片是否相似，传入图片和截图位置
+def is_image_similar(hwnd, image_l, rect):
+    image_r = image_grab(hwnd, rect)
+    image_r.save('../res/land_5_rect.png')
+    return image_similar.calc_image_similarity(image_l.convert('L'), image_r.convert('L'))
+
+
+# 打开图片
+def open_image(path):
+    return Image.open(path)

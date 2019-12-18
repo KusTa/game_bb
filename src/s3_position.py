@@ -83,3 +83,6 @@ conscription_status_rect_list = [(766, 222, 862, 262), (766, 354, 862, 392), (76
 
 # 征兵提示
 conscription_tip_rect = (492, 402, 928, 446)
+
+# 中心点矩形
+center_land_rect = (663, 378, 754, 469)

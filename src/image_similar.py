@@ -29,7 +29,7 @@ def orb_image_similar(image_l, image_r):
         good = [m for (m, n) in matches if m.distance < 0.75 * n.distance]
         similar = len(good) / len(matches)
         return similar
-    except ZeroDivisionError:
+    except:
         return '0'
 
     # 计算图片的局部哈希值--pHash
