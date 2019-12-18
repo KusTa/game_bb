@@ -55,6 +55,7 @@ celerybeat-schedule
 *.sage.py
 .env
 .venv
+.idea
 env/
 venv/
 ENV/
