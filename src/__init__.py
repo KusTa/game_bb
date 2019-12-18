@@ -248,7 +248,7 @@ class GameAuxiliaries(object):
 
     # 测试
     def test(self):
-        assistant.get_land_info(self.hwnd)
+        print(assistant.get_land_info(self.hwnd))
 
     # 创建GUI
     def run(self):

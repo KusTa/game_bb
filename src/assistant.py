@@ -65,6 +65,7 @@ def is_land_5_tone(hwnd):
     return image.is_image_similar(hwnd, image.open_image('../res/land_5_tone.png'), position.center_land_rect)
 
 
+# 获取土地信息
 def get_land_info(hwnd):
     image.get_h_projection(image.image_grab(hwnd, position.center_land_info_rect))
-    # print(image.get_clear_text_by_orc(hwnd, position.center_land_info_rect, 120, 'eng', '123456789Lv.'))
+    # return image.get_multi_line_text_by_orc(hwnd, position.center_land_info_rect, 100)

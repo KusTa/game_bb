@@ -69,6 +69,7 @@ def image_grab_clear(hwnd, rect, threshold):
     image = image_grab(hwnd, rect)
     # 灰度图
     image = image.convert('L')
+    image.show()
     # 黑白图
     image = image_two_value(image, threshold=threshold)
     return image
@@ -120,27 +121,31 @@ def open_image(path):
 
 
 # 获取明确的内容
-def get_clear_text_by_orc(hwnd, rect, threshold, lang, whitelist):
+def get_multi_line_text_by_orc(hwnd, rect, threshold):
     # 截图
     image = image_grab_clear(hwnd, rect, threshold=threshold)
     image.show()
     # 图片识别
-    return pytesseract.image_to_string(image, lang=lang,
-                                       config='--psm 1 --oem 3 -c tessedit_char_whitelist=' + whitelist)
+    return pytesseract.image_to_string(image, lang='chi_sim', config='--psm 1')
 
 
 # 水平投影
 def get_h_projection(image):
-    cv2.cvtColor(numpy.asarray(image_l), cv2.COLOR_BGR2GRAY)
-    h_projection = np.zeros(image.shape, np.uint8)
+    # IPL Image转灰度cv2
+    gray = cv2.cvtColor(np.asarray(image), cv2.COLOR_RGB2GRAY)
+    cv2.imshow('gray', gray)
+    # 二值化
+    ret, binary = cv2.threshold(gray, 72, 255, cv2.THRESH_BINARY)
+    cv2.imshow('binary', binary)
+    h_projection = np.zeros(binary.shape, np.uint8)
     # 图像高与宽
-    (h, w) = image.shape
+    (h, w) = binary.shape
     # 长度与图像高度一致的数组
     h_ = [0] * h
     # 循环统计每一行白色像素的个数
     for y in range(h):
         for x in range(w):
-            if image[y, x] == 255:
+            if binary[y, x] == 255:
                 h_[y] += 1
     # 绘制水平投影图像
     for y in range(h):
