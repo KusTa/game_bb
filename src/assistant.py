@@ -2,7 +2,7 @@
 
 import src.image as image
 import src.position_util as position_util
-import src.s2_position as position
+import src.s3_position as position
 import src.string_util as string_util
 
 
@@ -57,7 +57,8 @@ def is_conscription_disable(hwnd):
 # 征兵队列已满
 def is_conscription_tip(hwnd):
     return image.get_text_by_orc(hwnd, position.conscription_tip_rect, 120).find(
-        "预备兵") >= 0
+        "预备兵") >= 0 or image.get_text_by_orc(hwnd, position.conscription_tip_rect, 120).find(
+        "兵力") >= 0
 
 
 # 是否是五级地

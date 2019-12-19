@@ -11,7 +11,7 @@ from pymouse import PyMouse
 
 import src.assistant as assistant
 import src.event as event
-import src.s2_config as config
+import src.s3_config as config
 
 
 class GameAuxiliaries(object):
@@ -255,7 +255,7 @@ class GameAuxiliaries(object):
         window = tk.Tk()
         window.title("率土之滨辅助")
         window.geometry("500x300+1414+100")
-        start = tk.Button(window, text="开始", command=lambda: self.test())
+        start = tk.Button(window, text="开始", command=lambda: self.hero_wipe_out_test())
         start.pack()
         window.mainloop()
 

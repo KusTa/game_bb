@@ -69,7 +69,6 @@ def image_grab_clear(hwnd, rect, threshold):
     image = image_grab(hwnd, rect)
     # 灰度图
     image = image.convert('L')
-    image.show()
     # 黑白图
     image = image_two_value(image, threshold=threshold)
     return image
@@ -79,7 +78,6 @@ def image_grab_clear(hwnd, rect, threshold):
 def get_text_by_orc(hwnd, rect, threshold):
     # 截图
     image = image_grab_clear(hwnd, rect, threshold=threshold)
-    image.show()
     # 图片识别
     return pytesseract.image_to_string(image, lang='chi_sim', config='--psm 7')
 
@@ -124,7 +122,6 @@ def open_image(path):
 def get_multi_line_text_by_orc(hwnd, rect, threshold):
     # 截图
     image = image_grab_clear(hwnd, rect, threshold=threshold)
-    image.show()
     # 图片识别
     return pytesseract.image_to_string(image, lang='chi_sim', config='--psm 1')
 
