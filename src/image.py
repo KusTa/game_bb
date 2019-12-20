@@ -11,6 +11,11 @@ from PyQt5.QtWidgets import QApplication
 import src.window as window
 import src.image_similar as image_similar
 
+# 简体中文
+chinese = 'chi_sim'
+# 英文
+english = 'eng'
+
 
 # 判断图片是否是灰度图
 def is_gray_map(image, threshold=15):
@@ -124,6 +129,15 @@ def get_multi_line_text_by_orc(hwnd, rect, threshold):
     image = image_grab_clear(hwnd, rect, threshold=threshold)
     # 图片识别
     return pytesseract.image_to_string(image, lang='chi_sim', config='--psm 1')
+
+
+# 获取文字内容
+def get_multi_text(hwnd, rect, lang, threshold, whitelist):
+    # 截图
+    image = image_grab_clear(hwnd, rect, threshold)
+    # 图片识别
+    return pytesseract.image_to_string(image, lang=lang,
+                                       config='--psm 1 --oem 3 -c tessedit_char_whitelist=' + whitelist)
 
 
 # 水平投影

@@ -31,3 +31,13 @@ def scroll(hwnd, z, x, y):
 def click(hwnd, rect):
     point = position_util.point(rect)
     click_point(hwnd, point[0], point[1])
+
+
+# 按住移动
+def press_move(hwnd, start, end):
+    win32api.SendMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, win32api.MAKELONG(start[0], start[1]))
+    i = start[1]
+    while i >= end[1]:
+        win32api.SendMessage(hwnd, win32con.WM_MOUSEMOVE, win32con.MKF_MOUSEMODE, win32api.MAKELONG(start[0], i))
+        i -= 1
+    win32api.SendMessage(hwnd, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, win32api.MAKELONG(start[0], start[1]))

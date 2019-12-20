@@ -8,6 +8,12 @@ import src.user_input as user_input
 import src.window as window
 
 
+def click(hwnd, rect):
+    mouse.click(hwnd, rect)
+    time.sleep(1)
+
+
+# 点击外部区域
 def click_outside(hwnd):
     mouse.click(hwnd, position.outside_rect)
     time.sleep(1)
@@ -70,13 +76,13 @@ def click_wipe_out_button(hwnd):
 # 点击页面关闭按钮
 def click_page_close(hwnd):
     mouse.click(hwnd, position.page_close_rect)
-    time.sleep(1)
+    time.sleep(2)
 
 
 # 点击页面返回按钮
 def click_page_return(hwnd):
     mouse.click(hwnd, position.page_return_rect)
-    time.sleep(1.5)
+    time.sleep(2)
 
 
 # 点击征兵中心按钮
@@ -161,4 +167,29 @@ def map_enlarge(hwnd):
 # 地图还原
 def map_reduction(hwnd):
     user_input.ctrl_scroll(hwnd, -120, window.center_x, window.center_y)
+    time.sleep(1)
+
+
+# 滚动一页 TODO 放配置文件
+def scroll_one_page(hwnd):
+    mouse.press_move(hwnd, (300, 760 - window.top_space), (300, 760 - window.top_space - 581))
+
+
+# 重置土地统计选项
+def reset_land_option(hwnd):
+    mouse.click(hwnd, position.land_option_all_rect)
+    time.sleep(0.5)
+    mouse.click(hwnd, position.land_option_all_rect)
+    time.sleep(1)
+
+
+# 点击内政菜单
+def click_interior_menu(hwnd):
+    mouse.click(hwnd, position.interior_menu_rect)
+    time.sleep(1)
+
+
+# 点击内政详情菜单
+def click_interior_detail_menu(hwnd):
+    mouse.click(hwnd, position.interior_detail_menu_rect)
     time.sleep(1)

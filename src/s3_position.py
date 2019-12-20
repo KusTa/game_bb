@@ -86,3 +86,26 @@ conscription_tip_rect = (492, 402, 928, 446)
 
 # 中心点矩形
 center_land_rect = (663, 378, 754, 469)
+
+# 土地列表位置
+land_list_location_rect = (530, 201, 660, 786)
+
+# 土地统计列表左右位置
+land_statistics_left_list = (930, 212, 1110, 775)
+land_statistics_right_list = (1148, 212, 1304, 775)
+
+# 土地选项条目高度
+land_option_item_height = 60
+
+# 土地选项起始坐标
+left_land_option_first_rect = (870, 206, 1080, 206 + land_option_item_height)
+right_land_option_first_rect = (1110, 206, 1300, 206 + land_option_item_height)
+
+# 土地统计选项全选/撤销
+land_option_all_rect = (1160, 158, 1302, 200)
+
+# 内政菜单
+interior_menu_rect = (714, 713, 842, 806)
+
+# 内政详情
+interior_detail_menu_rect = (378, 418, 458, 536)

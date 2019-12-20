@@ -21,3 +21,8 @@ def hero_troops(rect):
 # 武将状态文字位置
 def hero_status(rect):
     return rect[0], rect[3], rect[0] + 81, rect[3] + 35
+
+
+# 条目位置
+def land_option(rect, height, index):
+    return rect[0], rect[1] + height * index, rect[2], rect[3] + height * index
