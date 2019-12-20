@@ -24,7 +24,7 @@ def get_next_possible_location(start):
 # 获取比较好的
 def get_better_next_possible_location(start, end):
     better = []
-    possible = get_next_possible_location(s)
+    possible = get_next_possible_location(start)
     for p in possible:
         if in_range(p, start, end):
             better.append(p)

@@ -158,6 +158,12 @@ def click_wipe_out_menu(hwnd):
     time.sleep(1)
 
 
+# 点击出征菜单按钮
+def click_army_expedition_menu(hwnd):
+    mouse.click(hwnd, position.army_expedition_menu_rect)
+    time.sleep(1)
+
+
 # 地图放大
 def map_enlarge(hwnd):
     user_input.ctrl_scroll(hwnd, 120, window.center_x, window.center_y)

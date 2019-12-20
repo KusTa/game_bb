@@ -86,10 +86,33 @@ def get_one_page_land_location_list(hwnd):
     return location_list
 
 
-# # 获取土地信息
-# def get_land_info(hwnd):
-#     image.get_h_projection(image.image_grab(hwnd, position.center_land_info_rect))
-#     # return image.get_multi_line_text_by_orc(hwnd, position.center_land_info_rect, 100)
+# 获取土地信息
+def get_land_info(hwnd):
+    text = image.get_multi_text(hwnd, position.center_land_info_rect, lang=image.chinese, threshold=100,
+                                whitelist='')
+    split = text.split('\n')
+    # 循环移除前后无效字符
+    for i in range(len(split)):
+        split[i] = split[i].strip()
+    # 倒序移除无用数据
+    for i in range(len(split) - 1, -1, -1):
+        if len(split[i]) == 0:
+            split.pop(i)
+    return split
+
+
+# 获取土地等级
+def get_land_level(hwnd):
+    text = image.get_single_line_text(hwnd, position.center_land_level_rect, lang=image.chinese, threshold=150,
+                                      whitelist='Lv.123456789')
+    text = text.strip().replace(" ", "")
+    index = text.find('Lv.')
+    if index >= 0:
+        number = text[(index + len('Lv.')):]
+        if number.isdigit():
+            return int(number)
+    return 0
+
 
 # 获取土地统计信息列表
 def get_land_statistics_list(hwnd, left):
@@ -141,3 +164,11 @@ def get_land_option_side_rect(hwnd, level, left):
         else:
             return position_util.land_option(position.right_land_option_first_rect, position.land_option_item_height,
                                              target_index)
+
+
+# 获取行军时长
+def get_march_duration(hwnd):
+    text = image.get_single_line_text(hwnd, position.march_duration_rect, lang=image.chinese, threshold=180,
+                                      whitelist='0123456789:')
+    duration = string_util.get_time_by_string(text)
+    return duration

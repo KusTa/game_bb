@@ -58,24 +58,49 @@ def is_above_main_threshold(image, threshold):
 
 
 # 图片二值化：黑白图：threshold阈值
-def image_two_value(image, threshold):
+def image_two_value(image, threshold, threshold_max=None):
     table = []
-    for i in range(256):
-        if i < threshold:
-            table.append(1)
-        else:
-            table.append(0)
+    if threshold_max is None:
+        for i in range(256):
+            if i < threshold:
+                table.append(1)
+            else:
+                table.append(0)
+    else:
+        for i in range(256):
+            if i < threshold or i > threshold_max:
+                table.append(1)
+            else:
+                table.append(0)
+    return image.point(table, '1')
+
+
+# 图片二值化：黑白图：threshold阈值
+def image_two_value_multi(image, threshold, threshold_max=None):
+    table = []
+    if threshold_max is None:
+        for i in range(256):
+            if i < threshold:
+                table.append(1)
+            else:
+                table.append(0)
+    else:
+        for i in range(256):
+            if i < threshold or i > threshold_max:
+                table.append(1)
+            else:
+                table.append(0)
     return image.point(table, '1')
 
 
 # 截图后处理成黑白图（便于识别）
-def image_grab_clear(hwnd, rect, threshold):
+def image_grab_clear(hwnd, rect, threshold, threshold_max=None):
     # 截图
     image = image_grab(hwnd, rect)
     # 灰度图
     image = image.convert('L')
     # 黑白图
-    image = image_two_value(image, threshold=threshold)
+    image = image_two_value(image, threshold, threshold_max)
     return image
 
 
@@ -135,6 +160,15 @@ def get_multi_line_text_by_orc(hwnd, rect, threshold):
 def get_multi_text(hwnd, rect, lang, threshold, whitelist):
     # 截图
     image = image_grab_clear(hwnd, rect, threshold)
+    # 图片识别
+    return pytesseract.image_to_string(image, lang=lang,
+                                       config='--psm 1 --oem 3 -c tessedit_char_whitelist=' + whitelist)
+
+
+# 获取单行文字
+def get_single_line_text(hwnd, rect, lang, threshold, threshold_max=None, whitelist=''):
+    # 截图
+    image = image_grab_clear(hwnd, rect, threshold, threshold_max)
     # 图片识别
     return pytesseract.image_to_string(image, lang=lang,
                                        config='--psm 1 --oem 3 -c tessedit_char_whitelist=' + whitelist)
